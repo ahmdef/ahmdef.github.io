@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ahmed El Fanaoui’s portfolio of applied mathematics, numerical computing, and software projects.">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>Ahmed El Fanaoui | Applied Mathematics &amp; Computing</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./portfolio.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true">A</span> Ahmed El Fanaoui</a>
+      <nav aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a class="nav-github" href="https://github.com/ahmdef">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="wrap hero" aria-labelledby="intro">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Ahmed El Fanaoui</p>
+        <h1 id="intro">Applied math<br> &amp; <em>computing.</em></h1>
+        <p class="intro">I study mathematics and computer science at ENSEEIHT. I’m interested in numerical linear algebra and how it can make large problems easier to compute.</p>
+        <div class="actions">
+          <a class="button primary" href="#projects">Explore my projects</a>
+          <a class="button secondary" href="https://github.com/ahmdef">GitHub profile</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <canvas id="surface" width="1000" height="720" role="img" aria-label="Illustration of a sampled three-dimensional surface as a layered blue wireframe."></canvas>
+        <figcaption><span>Sampled surface</span><span>Numerical computing</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="wrap work" id="projects" aria-labelledby="work-heading">
+      <div class="section-heading"><h2 id="work-heading">Selected projects</h2><a href="https://github.com/ahmdef?tab=repositories">All repositories</a></div>
+      <article class="feature">
+        <div class="feature-copy">
+          <p class="eyebrow">Julia · Numerical linear algebra</p>
+          <h3>Low-rank tensor approximation</h3>
+          <p>How much information can a smaller representation preserve? This Julia demo uses a Tucker decomposition and compares standard and randomized SVD on a synthetic three-dimensional array.</p>
+          <p class="credit">Based on ENSEEIHT coursework completed in a pair using school-provided materials. I contributed to the implementation and made this standalone demo with synthetic data.</p>
+          <a class="button secondary" href="https://github.com/ahmdef/tensor-low-rank-julia">View Julia project</a>
+        </div>
+        <div class="result">
+          <p class="eyebrow">One seeded experiment</p>
+          <div class="number">50× <span>fewer entries,<br> approximately</span></div>
+          <p class="result-detail">30,720 input entries → 616 stored entries</p>
+          <dl>
+            <div><dt>Standard SVD</dt><dd>1.98%</dd></div>
+            <div><dt>Randomized SVD</dt><dd>3.38%</dd></div>
+          </dl>
+          <p class="result-note">Relative reconstruction error against the noisy input</p>
+        </div>
+      </article>
+
+      <article class="feature ide">
+        <div class="feature-copy">
+          <p class="eyebrow">Java · JavaFX</p>
+          <h3>IDE7</h3>
+          <p>An eight-person team project with a Java editor, code completion, debugging tools, and a UML editor.</p>
+          <p class="credit">I shared responsibility for autocorrection and the compile-and-run workflow with a teammate. My contributions included compiler diagnostic parsing, debugger panels, and breakpoint support.</p>
+          <a class="button secondary" href="https://github.com/ahmdef/ide7-compile-run-demo">View IDE7 project</a>
+        </div>
+        <section class="console" aria-labelledby="example-title">
+          <div class="console-head">
+            <h4 id="example-title">Compile-and-run walkthrough</h4>
+            <span>Java</span>
+          </div>
+          <div class="console-controls" hidden>
+            <button type="button" data-example="error" aria-pressed="true">Missing semicolon</button>
+            <button type="button" data-example="fixed" aria-pressed="false">Corrected code</button>
+          </div>
+          <pre class="code-line"><code id="example-code">sum += n * n</code></pre>
+          <div class="console-output" aria-live="polite">
+            <p id="example-status">Compilation failed</p>
+            <pre id="example-output">Line 5: ';' expected</pre>
+          </div>
+          <p class="example-note">Example output from the project’s Java sample.</p>
+        </section>
+      </article>
+
+      <h3 class="other-heading">More coursework projects</h3>
+      <div class="other-grid">
+        <article><p class="eyebrow">MATLAB</p><h4><a href="https://github.com/ahmdef/SIgnal-Processing-Project">Signal processing</a></h4><p>Decoding messages under different noise and signal-to-noise conditions.</p></article>
+        <article><p class="eyebrow">Ada</p><h4><a href="https://github.com/ahmdef/Ada-Project">Network routing</a></h4><p>Routing tables, route lookup, and interface selection.</p></article>
+        <article><p class="eyebrow">Java</p><h4><a href="https://github.com/ahmdef/Project-Java">Geometry and Allumettes</a></h4><p>A circle implementation and an implementation of the matchstick game.</p></article>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="wrap about-inner">
+        <div><p class="eyebrow">About</p><h2 id="about-heading">Ahmed El Fanaoui</h2></div>
+        <div><p>My interests are in applied mathematics, numerical linear algebra, and scientific computing. I enjoy implementing a method, running an experiment, and looking at what the results say about its accuracy and cost.</p><a class="button secondary" href="https://github.com/ahmdef">Find me on GitHub</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap footer"><span>Ahmed El Fanaoui</span><a href="#top">Back to top</a></footer>
+</body>
+</html>
