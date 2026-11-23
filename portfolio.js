@@ -20,7 +20,7 @@ if (context) {
     const depth = Math.cos(pitch) * turned + Math.sin(pitch) * y;
     const vertical = Math.cos(pitch) * y - Math.sin(pitch) * turned;
     const scale = 1110 / (7.9 - depth);
-    return { x: width / 2 + horizontal * scale, y: height * .52 - vertical * scale, depth };
+    return { x: width / 2 + horizontal * scale, y: height * .48 - vertical * scale, depth };
   }
 
   function heightAt(x, z) {
@@ -84,10 +84,10 @@ if (context) {
     context.lineWidth = density > 20 ? 1 : 1.6;
     for (const cell of cells) {
       const amount = Math.min(1, Math.max(0, (cell.elevation + .75) / 1.95));
-      const hue = (265 + 119 * amount) % 360;
+      const hue = 235 - 44 * amount;
       path(cell.corners, true);
-      context.fillStyle = `hsl(${hue} 64% ${31 + 37 * amount}%)`;
-      context.strokeStyle = `hsl(${hue} 78% ${68 + 22 * amount}% / .78)`;
+      context.fillStyle = `hsl(${hue} 62% ${27 + 39 * amount}%)`;
+      context.strokeStyle = `hsl(${hue} 87% ${74 + 17 * amount}% / .78)`;
       context.fill();
       context.stroke();
     }
