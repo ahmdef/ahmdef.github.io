@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ahmed El Fanaoui’s portfolio of applied mathematics, numerical computing, and software projects.">
-  <meta name="theme-color" content="#f5f6f2">
+  <meta name="description" content="Ahmed El Fanaoui’s portfolio in applied mathematics, numerical computing, and software.">
+  <meta name="theme-color" content="#0a1020">
   <title>Ahmed El Fanaoui | Applied Mathematics &amp; Computing</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./portfolio.js" defer></script>
@@ -13,34 +13,43 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top"><span class="mark" aria-hidden="true">A</span> Ahmed El Fanaoui</a>
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true">AE</span> Ahmed El Fanaoui</a>
       <nav aria-label="Main navigation">
         <a href="#projects">Projects</a>
-        <a href="#about">About</a>
+        <a href="#career">Career Project</a>
         <a class="nav-github" href="https://github.com/ahmdef">GitHub</a>
       </nav>
     </div>
   </header>
-
   <main id="main">
     <section class="wrap hero" aria-labelledby="intro">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> Ahmed El Fanaoui</p>
-        <h1 id="intro">Applied math<br> &amp; <em>computing.</em></h1>
-        <p class="intro">I study mathematics and computer science at ENSEEIHT. I’m interested in numerical linear algebra and how it can make large problems easier to compute.</p>
+        <p class="eyebrow">ENSEEIHT · Applied mathematics &amp; computing</p>
+        <h1 id="intro">Making math<br><em>computational.</em></h1>
+        <p class="intro">I’m Ahmed El Fanaoui, an engineering student interested in numerical linear algebra and how it can make large problems easier to compute.</p>
         <div class="actions">
-          <a class="button primary" href="#projects">Explore my projects</a>
-          <a class="button secondary" href="https://github.com/ahmdef">GitHub profile</a>
+          <a class="button primary" href="#projects">Explore projects</a>
+          <a class="button secondary" href="#career">Career Project</a>
         </div>
       </div>
-      <figure class="hero-figure">
-        <canvas id="surface" width="1000" height="720" role="img" aria-label="Illustration of a sampled three-dimensional surface as a layered blue wireframe."></canvas>
-        <figcaption><span>Sampled surface</span><span>Numerical computing</span></figcaption>
+      <figure class="hero-figure" aria-labelledby="scene-caption">
+        <div class="scene">
+          <canvas id="surface" width="960" height="790" role="img" aria-label="Interactive three-dimensional surface sampled on a rectangular grid."></canvas>
+          <div class="scene-label"><span></span> Interactive 3D surface</div>
+          <div class="scene-hint" id="scene-hint" hidden>Drag to rotate</div>
+        </div>
+        <figcaption id="scene-caption">
+          <span class="scene-description">Sampling density</span>
+          <div class="scene-controls" id="scene-controls" hidden>
+            <button type="button" data-grid="coarse" aria-pressed="false">Coarse</button>
+            <button type="button" data-grid="fine" aria-pressed="true">Fine</button>
+            <button type="button" id="rotate" aria-pressed="false">Auto-rotate</button>
+          </div>
+        </figcaption>
       </figure>
     </section>
-
     <section class="wrap work" id="projects" aria-labelledby="work-heading">
-      <div class="section-heading"><h2 id="work-heading">Selected projects</h2><a href="https://github.com/ahmdef?tab=repositories">All repositories</a></div>
+      <div class="section-heading"><h2 id="work-heading">Selected projects</h2><a href="https://github.com/ahmdef?tab=repositories">All GitHub projects</a></div>
       <article class="feature">
         <div class="feature-copy">
           <p class="eyebrow">Julia · Numerical linear algebra</p>
@@ -95,10 +104,58 @@
       </div>
     </section>
 
-    <section class="about" id="about" aria-labelledby="about-heading">
-      <div class="wrap about-inner">
-        <div><p class="eyebrow">About</p><h2 id="about-heading">Ahmed El Fanaoui</h2></div>
-        <div><p>My interests are in applied mathematics, numerical linear algebra, and scientific computing. I enjoy implementing a method, running an experiment, and looking at what the results say about its accuracy and cost.</p><a class="button secondary" href="https://github.com/ahmdef">Find me on GitHub</a></div>
+    <section class="career" id="career" aria-labelledby="career-title">
+      <div class="wrap career-inner">
+        <div class="section-heading career-heading">
+          <div><p class="eyebrow">Present · Past · Future</p><h2 id="career-title">Career Project</h2></div>
+          <p>I want to work on numerical algorithms for scientific problems, with an emphasis on accuracy, performance, and reproducibility.</p>
+        </div>
+        <div class="career-top">
+          <article class="career-panel">
+            <p class="eyebrow">Curriculum vitae</p>
+            <h3>Education and experience</h3>
+            <p>My studies at ENSEEIHT, selected projects, and technical skills.</p>
+            <div class="actions">
+              <a class="button secondary" href="./cv-en.html" hreflang="en">CV in English</a>
+              <a class="button secondary" href="./cv-fr.html" hreflang="fr" lang="fr">CV en français</a>
+            </div>
+          </article>
+          <article class="career-panel pitch">
+            <p class="eyebrow">Elevator pitch · English · 2–3 minutes</p>
+            <h3>Why numerical computing</h3>
+            <p>Video recording pending.</p>
+            <details>
+              <summary>Read the pitch draft</summary>
+              <div class="transcript">
+                <p><strong>Present.</strong> I’m Ahmed El Fanaoui, an engineering student at ENSEEIHT with a particular interest in applied mathematics. What I bring to a team is the ability to take a mathematical idea, implement it, and design a test that shows where it works. I like asking how much accuracy we need, how expensive it is to get, and whether someone else can reproduce the result.</p>
+                <p><strong>Past.</strong> In a first-year scientific computing project, a teammate and I worked on low-rank tensor approximation. I later made a Julia demo with synthetic data to compare two versions of the method. In one seeded experiment, the smaller representation kept 616 numbers from an input of more than 30,000. The two methods used the same amount of storage but produced different reconstruction errors. For IDE7, I worked with a teammate on the compile-and-run workflow. There I saw how much a clear diagnostic helps a user understand what to fix.</p>
+                <p><strong>Future.</strong> I want to deepen my understanding of numerical linear algebra and work on scientific software. Daniel Kressner’s low-rank research points toward exploring tensor compression at EPFL. Nicholas Higham’s work on numerical stability makes Manchester an interesting place to study how errors propagate. Gene Golub’s contributions to the SVD make Stanford Summer Session a third possibility for exploring matrix computation. In each case, my goal is to come back with an experiment I can explain, share, and improve.</p>
+              </div>
+            </details>
+          </article>
+        </div>
+        <h3 class="other-heading">Role models and international mobility</h3>
+        <p class="career-note">Profiles based on public research. The mobility ideas are options to explore.</p>
+        <div class="roles">
+          <article class="career-panel role">
+            <p class="eyebrow">Low-rank approximation</p>
+            <h4>Daniel Kressner</h4>
+            <p>His work at EPFL connects matrix and tensor methods with high-performance computing. I’d like to build on my Julia demo by measuring how different target ranks affect error, storage, and runtime. <a href="https://www.epfl.ch/schools/sb/research/math/research/computationalsciences/">EPFL research profile</a></p>
+            <div class="mobility"><p class="eyebrow">Lausanne, Switzerland</p><h5>EPFL exchange semester</h5><p>Explore numerical mathematics courses and develop a reproducible comparison of tensor methods. First, check the exchange agreement and nomination process with ENSEEIHT. <a href="https://www.epfl.ch/education/international/en/coming-to-epfl/semester-courses/">EPFL exchange information</a></p></div>
+          </article>
+          <article class="career-panel role">
+            <p class="eyebrow">Numerical stability</p>
+            <h4>Nicholas Higham</h4>
+            <p>Higham’s work on accuracy and stability shows why an algorithm needs to be tested on difficult inputs. I’d like to study how conditioning and finite precision affect the reliability of a result. <a href="https://www.maths.manchester.ac.uk/~higham/">Manchester research profile</a></p>
+            <div class="mobility"><p class="eyebrow">Manchester, United Kingdom</p><h5>Study abroad at Manchester</h5><p>Look for numerical analysis modules and test selected methods on well-conditioned and ill-conditioned matrices. Course access depends on the route and agreement. <a href="https://www.manchester.ac.uk/study/international/study-abroad-exchange/programmes/">Manchester programme options</a></p></div>
+          </article>
+          <article class="career-panel role">
+            <p class="eyebrow">Matrix computation</p>
+            <h4>Gene Golub</h4>
+            <p>Golub helped develop practical SVD algorithms and build Stanford’s scientific computing community. His career shows how an algorithm can shape the tools researchers use across disciplines. <a href="https://legacy.cs.stanford.edu/memoriam/professor-gene-h-golub">Stanford biography</a></p>
+            <div class="mobility"><p class="eyebrow">Stanford, United States</p><h5>Stanford Summer Session</h5><p>Explore visiting-student courses in applied mathematics or computing, then compare SVD implementations on datasets of different sizes. Check course availability, funding, and eligibility before applying. <a href="https://events.stanford.edu/department/summer_session">Stanford programme information</a></p></div>
+          </article>
+        </div>
       </div>
     </section>
   </main>

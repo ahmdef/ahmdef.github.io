@@ -1,58 +1,156 @@
-const surface = document.querySelector("#surface");
-const context = surface.getContext("2d");
+const canvas = document.querySelector("#surface");
+const context = canvas?.getContext("2d");
 
 if (context) {
-  const { width, height } = surface;
-  const background = context.createLinearGradient(0, 0, width, height);
-  background.addColorStop(0, "#111a37");
-  background.addColorStop(1, "#202f62");
-  context.fillStyle = background;
-  context.fillRect(0, 0, width, height);
+  const controls = document.querySelector("#scene-controls");
+  const rotate = document.querySelector("#rotate");
+  const gridButtons = [...controls.querySelectorAll("[data-grid]")];
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const { width, height } = canvas;
+  let yaw = -0.68;
+  let pitch = 0.69;
+  let density = 31;
+  let pointer;
+  let frame;
+  let lastTime;
 
-  context.fillStyle = "#93aaff34";
-  for (let x = 35; x < width; x += 30) {
-    for (let y = 35; y < height; y += 30) {
-      context.fillRect(x, y, 2, 2);
-    }
+  function project(x, y, z) {
+    const horizontal = Math.cos(yaw) * x - Math.sin(yaw) * z;
+    const turned = Math.sin(yaw) * x + Math.cos(yaw) * z;
+    const depth = Math.cos(pitch) * turned + Math.sin(pitch) * y;
+    const vertical = Math.cos(pitch) * y - Math.sin(pitch) * turned;
+    const scale = 1050 / (7.9 - depth);
+    return { x: width / 2 + horizontal * scale, y: height * .56 - vertical * scale, depth };
   }
 
-  const point = (u, v, offset) => {
-    const peak = 1.55 * Math.exp(-0.55 * ((u + 0.6) ** 2 + (v - 0.3) ** 2));
-    const ripple = 0.22 * Math.sin(2 * u + v) * Math.cos(v * 1.9);
-    return [
-      width / 2 + (u - v) * 85,
-      height * 0.49 + (u + v) * 33 - (peak + ripple) * 138 + offset,
-    ];
-  };
+  function heightAt(x, z) {
+    const ridge = 1.46 * Math.exp(-.53 * ((x + .54) ** 2 + (z - .15) ** 2));
+    const crest = .98 * Math.exp(-1.18 * ((x - 1.3) ** 2 + (z + .8) ** 2));
+    const ripple = .28 * Math.sin(x * 2.15 - z * .7) * Math.cos(z * 1.45);
+    return ridge + crest + ripple - .58;
+  }
 
-  const samples = 34;
-  const gridLine = (constant, alongU, offset) => {
+  function path(points, closed = false) {
     context.beginPath();
-    for (let index = 0; index <= samples; index += 1) {
-      const variable = -2.38 + index * 4.76 / samples;
-      const [x, y] = alongU ? point(variable, constant, offset) : point(constant, variable, offset);
-      if (index === 0) context.moveTo(x, y);
-      else context.lineTo(x, y);
-    }
-    context.stroke();
-  };
+    context.moveTo(points[0].x, points[0].y);
+    for (const point of points.slice(1)) context.lineTo(point.x, point.y);
+    if (closed) context.closePath();
+  }
 
-  const layers = [
-    { offset: 169, tint: "#6884f355", lines: 13 },
-    { offset: 114, tint: "#7c9bff70", lines: 15 },
-    { offset: 54, tint: "#aacaff", lines: 20 },
-  ];
-  for (const layer of layers) {
-    context.strokeStyle = layer.tint;
-    context.lineWidth = layer.offset === 54 ? 1.65 : 1.25;
-    for (let index = 0; index <= layer.lines; index += 1) {
-      const coordinate = -2.38 + index * 4.76 / layer.lines;
-      gridLine(coordinate, true, layer.offset);
-      gridLine(coordinate, false, layer.offset);
+  function draw() {
+    context.clearRect(0, 0, width, height);
+    context.fillStyle = "#9bb9ff39";
+    for (let x = 24; x < width; x += 31) {
+      for (let y = 24; y < height; y += 31) context.fillRect(x, y, 2, 2);
+    }
+
+    const extent = 2.45;
+    context.strokeStyle = "#667fb565";
+    context.lineWidth = 1.4;
+    for (let index = 0; index <= 12; index += 1) {
+      const step = -extent + index * extent / 6;
+      path([project(step, -1.08, -extent), project(step, -1.08, extent)]);
+      context.stroke();
+      path([project(-extent, -1.08, step), project(extent, -1.08, step)]);
+      context.stroke();
+    }
+    for (const x of [-extent, extent]) {
+      for (const z of [-extent, extent]) {
+        path([project(x, -1.08, z), project(x, heightAt(x, z), z)]);
+        context.stroke();
+      }
+    }
+
+    const cells = [];
+    const vertices = Array.from({ length: density + 1 }, (_, row) =>
+      Array.from({ length: density + 1 }, (_, col) => {
+        const x = extent * (2 * col / density - 1);
+        const z = extent * (2 * row / density - 1);
+        const elevation = heightAt(x, z);
+        return { ...project(x, elevation, z), elevation };
+      })
+    );
+    for (let row = 0; row < density; row += 1) {
+      for (let col = 0; col < density; col += 1) {
+        const corners = [vertices[row][col], vertices[row][col + 1],
+          vertices[row + 1][col + 1], vertices[row + 1][col]];
+        const depth = (corners[0].depth + corners[2].depth) / 2;
+        const elevation = (corners[0].elevation + corners[2].elevation) / 2;
+        cells.push({ corners, depth, elevation });
+      }
+    }
+
+    cells.sort((near, far) => near.depth - far.depth);
+    context.lineWidth = density > 20 ? 1 : 1.6;
+    for (const cell of cells) {
+      const amount = Math.min(1, Math.max(0, (cell.elevation + .75) / 1.95));
+      const hue = 254 - 72 * amount;
+      path(cell.corners, true);
+      context.fillStyle = `hsl(${hue} 66% ${27 + 21 * amount}%)`;
+      context.strokeStyle = `hsl(${hue} 88% ${65 + 17 * amount}% / .74)`;
+      context.fill();
+      context.stroke();
     }
   }
-}
 
+  function animate(time) {
+    if (lastTime !== undefined) yaw += Math.min(time - lastTime, 45) * .00043;
+    lastTime = time;
+    draw();
+    frame = requestAnimationFrame(animate);
+  }
+
+  function setRotation(active) {
+    cancelAnimationFrame(frame);
+    lastTime = undefined;
+    rotate.setAttribute("aria-pressed", String(active));
+    if (active) frame = requestAnimationFrame(animate);
+  }
+
+  for (const button of gridButtons) {
+    button.addEventListener("click", () => {
+      density = button.dataset.grid === "fine" ? 31 : 12;
+      for (const option of gridButtons) option.setAttribute("aria-pressed", String(option === button));
+      draw();
+    });
+  }
+  rotate.addEventListener("click", () => setRotation(rotate.getAttribute("aria-pressed") !== "true"));
+  reducedMotion.addEventListener("change", event => {
+    if (event.matches) setRotation(false);
+  });
+
+  canvas.addEventListener("pointerdown", event => {
+    if (!event.isPrimary || event.button > 0) return;
+    setRotation(false);
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    canvas.setPointerCapture(event.pointerId);
+  });
+  canvas.addEventListener("pointermove", event => {
+    if (pointer?.id !== event.pointerId) return;
+    yaw += (event.clientX - pointer.x) * .014;
+    pitch = Math.min(1.35, Math.max(.22, pitch + (event.clientY - pointer.y) * .011));
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    draw();
+  });
+  canvas.addEventListener("lostpointercapture", () => { pointer = undefined; });
+
+  const turns = { ArrowLeft: [-.16, 0], ArrowRight: [.16, 0], ArrowUp: [0, -.12], ArrowDown: [0, .12] };
+  canvas.addEventListener("keydown", event => {
+    const turn = turns[event.key];
+    if (!turn) return;
+    event.preventDefault();
+    setRotation(false);
+    yaw += turn[0];
+    pitch = Math.min(1.35, Math.max(.22, pitch + turn[1]));
+    draw();
+  });
+  canvas.tabIndex = 0;
+  canvas.setAttribute("aria-label", "Three-dimensional sampled surface. Use arrow keys to rotate.");
+  canvas.dataset.ready = "";
+  document.querySelector("#scene-hint").hidden = false;
+  controls.hidden = false;
+  draw();
+}
 const controls = document.querySelector(".console-controls");
 const examples = {
   error: { code: "sum += n * n", status: "Compilation failed", output: "Line 5: ';' expected" },
