@@ -19,8 +19,8 @@ if (context) {
     const turned = Math.sin(yaw) * x + Math.cos(yaw) * z;
     const depth = Math.cos(pitch) * turned + Math.sin(pitch) * y;
     const vertical = Math.cos(pitch) * y - Math.sin(pitch) * turned;
-    const scale = 1050 / (7.9 - depth);
-    return { x: width / 2 + horizontal * scale, y: height * .56 - vertical * scale, depth };
+    const scale = 1110 / (7.9 - depth);
+    return { x: width / 2 + horizontal * scale, y: height * .52 - vertical * scale, depth };
   }
 
   function heightAt(x, z) {
@@ -39,13 +39,13 @@ if (context) {
 
   function draw() {
     context.clearRect(0, 0, width, height);
-    context.fillStyle = "#9bb9ff39";
+    context.fillStyle = "#63426928";
     for (let x = 24; x < width; x += 31) {
       for (let y = 24; y < height; y += 31) context.fillRect(x, y, 2, 2);
     }
 
     const extent = 2.45;
-    context.strokeStyle = "#667fb565";
+    context.strokeStyle = "#6b507554";
     context.lineWidth = 1.4;
     for (let index = 0; index <= 12; index += 1) {
       const step = -extent + index * extent / 6;
@@ -84,10 +84,10 @@ if (context) {
     context.lineWidth = density > 20 ? 1 : 1.6;
     for (const cell of cells) {
       const amount = Math.min(1, Math.max(0, (cell.elevation + .75) / 1.95));
-      const hue = 254 - 72 * amount;
+      const hue = (265 + 119 * amount) % 360;
       path(cell.corners, true);
-      context.fillStyle = `hsl(${hue} 66% ${27 + 21 * amount}%)`;
-      context.strokeStyle = `hsl(${hue} 88% ${65 + 17 * amount}% / .74)`;
+      context.fillStyle = `hsl(${hue} 64% ${31 + 37 * amount}%)`;
+      context.strokeStyle = `hsl(${hue} 78% ${68 + 22 * amount}% / .78)`;
       context.fill();
       context.stroke();
     }
@@ -145,7 +145,7 @@ if (context) {
     draw();
   });
   canvas.tabIndex = 0;
-  canvas.setAttribute("aria-label", "Three-dimensional sampled surface. Use arrow keys to rotate.");
+  canvas.setAttribute("aria-label", "Three-dimensional sampled surface. Use arrow keys to turn it.");
   canvas.dataset.ready = "";
   document.querySelector("#scene-hint").hidden = false;
   controls.hidden = false;

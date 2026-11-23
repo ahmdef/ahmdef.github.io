@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Ahmed El Fanaoui’s portfolio in applied mathematics, numerical computing, and software.">
-  <meta name="theme-color" content="#0a1020">
+  <meta name="theme-color" content="#faf7ef">
   <title>Ahmed El Fanaoui | Applied Mathematics &amp; Computing</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./portfolio.js" defer></script>
@@ -13,7 +13,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top"><span class="mark" aria-hidden="true">AE</span> Ahmed El Fanaoui</a>
+      <a class="brand" href="#top">Ahmed El Fanaoui</a>
       <nav aria-label="Main navigation">
         <a href="#projects">Projects</a>
         <a href="#career">Career Project</a>
@@ -24,136 +24,136 @@
   <main id="main">
     <section class="wrap hero" aria-labelledby="intro">
       <div class="hero-copy">
-        <p class="eyebrow">ENSEEIHT · Applied mathematics &amp; computing</p>
-        <h1 id="intro">Making math<br><em>computational.</em></h1>
-        <p class="intro">I’m Ahmed El Fanaoui, an engineering student interested in numerical linear algebra and how it can make large problems easier to compute.</p>
+        <p class="eyebrow">Ahmed El Fanaoui · Toulouse</p>
+        <h1 id="intro">How much can<br>you <em>leave out?</em></h1>
+        <p class="intro">I study maths and computer science at ENSEEIHT. Lately I’ve been using Julia to see what happens when you try to reconstruct a big array from a fraction of its numbers.</p>
         <div class="actions">
-          <a class="button primary" href="#projects">Explore projects</a>
+          <a class="button primary" href="#projects">See what I’ve built</a>
           <a class="button secondary" href="#career">Career Project</a>
         </div>
       </div>
       <figure class="hero-figure" aria-labelledby="scene-caption">
         <div class="scene">
           <canvas id="surface" width="960" height="790" role="img" aria-label="Interactive three-dimensional surface sampled on a rectangular grid."></canvas>
-          <div class="scene-label"><span></span> Interactive 3D surface</div>
-          <div class="scene-hint" id="scene-hint" hidden>Drag to rotate</div>
+          <div class="scene-label"><span></span> A surface, sampled in 3D</div>
+          <div class="scene-hint" id="scene-hint" hidden>Drag the surface to turn it</div>
         </div>
         <figcaption id="scene-caption">
-          <span class="scene-description">Sampling density</span>
+          <span class="scene-description">Show the same surface with fewer or more points</span>
           <div class="scene-controls" id="scene-controls" hidden>
-            <button type="button" data-grid="coarse" aria-pressed="false">Coarse</button>
-            <button type="button" data-grid="fine" aria-pressed="true">Fine</button>
-            <button type="button" id="rotate" aria-pressed="false">Auto-rotate</button>
+            <button type="button" data-grid="coarse" aria-pressed="false">Fewer points</button>
+            <button type="button" data-grid="fine" aria-pressed="true">More points</button>
+            <button type="button" id="rotate" aria-pressed="false">Spin</button>
           </div>
         </figcaption>
       </figure>
     </section>
     <section class="wrap work" id="projects" aria-labelledby="work-heading">
-      <div class="section-heading"><h2 id="work-heading">Selected projects</h2><a href="https://github.com/ahmdef?tab=repositories">All GitHub projects</a></div>
+      <div class="section-heading"><h2 id="work-heading">Things I’ve built</h2><a href="https://github.com/ahmdef?tab=repositories">Browse GitHub</a></div>
       <article class="feature">
         <div class="feature-copy">
           <p class="eyebrow">Julia · Numerical linear algebra</p>
-          <h3>Low-rank tensor approximation</h3>
-          <p>How much information can a smaller representation preserve? This Julia demo uses a Tucker decomposition and compares standard and randomized SVD on a synthetic three-dimensional array.</p>
-          <p class="credit">Based on ENSEEIHT coursework completed in a pair using school-provided materials. I contributed to the implementation and made this standalone demo with synthetic data.</p>
-          <a class="button secondary" href="https://github.com/ahmdef/tensor-low-rank-julia">View Julia project</a>
+          <h3>30,720 numbers down to 616</h3>
+          <p>I wanted to see how much of a noisy 3D array I could reconstruct from a much smaller set of numbers. In Julia, I tried two ways to choose the factors in a Tucker decomposition. Both stored 616 numbers. The difference was how much detail came back.</p>
+          <p class="credit">The idea came from an ENSEEIHT project I worked on with a teammate using the school’s materials. I built the public demo separately with generated data.</p>
+          <a class="button secondary" href="https://github.com/ahmdef/tensor-low-rank-julia">See the Julia experiment</a>
         </div>
         <div class="result">
-          <p class="eyebrow">One seeded experiment</p>
+          <p class="eyebrow">Tucker approximation · Julia</p>
           <div class="number">50× <span>fewer entries,<br> approximately</span></div>
-          <p class="result-detail">30,720 input entries → 616 stored entries</p>
+          <p class="result-detail">30,720 entries before, 616 after</p>
           <dl>
             <div><dt>Standard SVD</dt><dd>1.98%</dd></div>
             <div><dt>Randomized SVD</dt><dd>3.38%</dd></div>
           </dl>
-          <p class="result-note">Relative reconstruction error against the noisy input</p>
+          <p class="result-note">Reconstruction error for one seeded run</p>
         </div>
       </article>
 
       <article class="feature ide">
         <div class="feature-copy">
           <p class="eyebrow">Java · JavaFX</p>
-          <h3>IDE7</h3>
-          <p>An eight-person team project with a Java editor, code completion, debugging tools, and a UML editor.</p>
-          <p class="credit">I shared responsibility for autocorrection and the compile-and-run workflow with a teammate. My contributions included compiler diagnostic parsing, debugger panels, and breakpoint support.</p>
-          <a class="button secondary" href="https://github.com/ahmdef/ide7-compile-run-demo">View IDE7 project</a>
+          <h3>What went wrong on line five?</h3>
+          <p>When you’re learning Java, a compiler error can stop you in your tracks. With IDE7, our eight-person team built an editor where you can write, run, and debug Java code in the same window.</p>
+          <p class="credit">A teammate and I shared the autocorrection and compile-and-run work. I helped turn compiler output into useful diagnostics and also worked on the debugger panels and breakpoints.</p>
+          <a class="button secondary" href="https://github.com/ahmdef/ide7-compile-run-demo">See the IDE7 project</a>
         </div>
         <section class="console" aria-labelledby="example-title">
           <div class="console-head">
-            <h4 id="example-title">Compile-and-run walkthrough</h4>
+            <h4 id="example-title">One missing semicolon</h4>
             <span>Java</span>
           </div>
           <div class="console-controls" hidden>
-            <button type="button" data-example="error" aria-pressed="true">Missing semicolon</button>
-            <button type="button" data-example="fixed" aria-pressed="false">Corrected code</button>
+            <button type="button" data-example="error" aria-pressed="true">Show the error</button>
+            <button type="button" data-example="fixed" aria-pressed="false">Fix and run</button>
           </div>
           <pre class="code-line"><code id="example-code">sum += n * n</code></pre>
           <div class="console-output" aria-live="polite">
             <p id="example-status">Compilation failed</p>
             <pre id="example-output">Line 5: ';' expected</pre>
           </div>
-          <p class="example-note">Example output from the project’s Java sample.</p>
+          <p class="example-note">Replay of an IDE7 run with the sample program.</p>
         </section>
       </article>
 
-      <h3 class="other-heading">More coursework projects</h3>
+      <h3 class="other-heading">More from coursework</h3>
       <div class="other-grid">
         <article><p class="eyebrow">MATLAB</p><h4><a href="https://github.com/ahmdef/SIgnal-Processing-Project">Signal processing</a></h4><p>Decoding messages under different noise and signal-to-noise conditions.</p></article>
         <article><p class="eyebrow">Ada</p><h4><a href="https://github.com/ahmdef/Ada-Project">Network routing</a></h4><p>Routing tables, route lookup, and interface selection.</p></article>
-        <article><p class="eyebrow">Java</p><h4><a href="https://github.com/ahmdef/Project-Java">Geometry and Allumettes</a></h4><p>A circle implementation and an implementation of the matchstick game.</p></article>
+        <article><p class="eyebrow">Java</p><h4><a href="https://github.com/ahmdef/Project-Java">Geometry and Allumettes</a></h4><p>A circle class and a playable version of the matchstick game.</p></article>
       </div>
     </section>
 
     <section class="career" id="career" aria-labelledby="career-title">
       <div class="wrap career-inner">
         <div class="section-heading career-heading">
-          <div><p class="eyebrow">Present · Past · Future</p><h2 id="career-title">Career Project</h2></div>
-          <p>I want to work on numerical algorithms for scientific problems, with an emphasis on accuracy, performance, and reproducibility.</p>
+          <div><p class="eyebrow">Where I’d like to go</p><h2 id="career-title">Career Project</h2></div>
+          <p>I’d like to work on scientific software and get better at answering two questions about an algorithm: how much can I trust the result, and what did it cost to compute?</p>
         </div>
         <div class="career-top">
           <article class="career-panel">
-            <p class="eyebrow">Curriculum vitae</p>
-            <h3>Education and experience</h3>
-            <p>My studies at ENSEEIHT, selected projects, and technical skills.</p>
+            <p class="eyebrow">CV</p>
+            <h3>My background</h3>
+            <p>My studies, projects, and the tools I’ve used along the way.</p>
             <div class="actions">
               <a class="button secondary" href="./cv-en.html" hreflang="en">CV in English</a>
               <a class="button secondary" href="./cv-fr.html" hreflang="fr" lang="fr">CV en français</a>
             </div>
           </article>
           <article class="career-panel pitch">
-            <p class="eyebrow">Elevator pitch · English · 2–3 minutes</p>
-            <h3>Why numerical computing</h3>
-            <p>Video recording pending.</p>
+            <p class="eyebrow">Elevator pitch · English</p>
+            <h3>What draws me to this work</h3>
+            <p>I still need to record the 2–3 minute video.</p>
             <details>
-              <summary>Read the pitch draft</summary>
+              <summary>Read my speaking notes</summary>
               <div class="transcript">
-                <p><strong>Present.</strong> I’m Ahmed El Fanaoui, an engineering student at ENSEEIHT with a particular interest in applied mathematics. What I bring to a team is the ability to take a mathematical idea, implement it, and design a test that shows where it works. I like asking how much accuracy we need, how expensive it is to get, and whether someone else can reproduce the result.</p>
-                <p><strong>Past.</strong> In a first-year scientific computing project, a teammate and I worked on low-rank tensor approximation. I later made a Julia demo with synthetic data to compare two versions of the method. In one seeded experiment, the smaller representation kept 616 numbers from an input of more than 30,000. The two methods used the same amount of storage but produced different reconstruction errors. For IDE7, I worked with a teammate on the compile-and-run workflow. There I saw how much a clear diagnostic helps a user understand what to fix.</p>
-                <p><strong>Future.</strong> I want to deepen my understanding of numerical linear algebra and work on scientific software. Daniel Kressner’s low-rank research points toward exploring tensor compression at EPFL. Nicholas Higham’s work on numerical stability makes Manchester an interesting place to study how errors propagate. Gene Golub’s contributions to the SVD make Stanford Summer Session a third possibility for exploring matrix computation. In each case, my goal is to come back with an experiment I can explain, share, and improve.</p>
+                <p>Hi, I’m Ahmed. I study maths and computer science at ENSEEIHT. One bit of maths I keep coming back to is approximation. If I can solve the smaller version of a problem, I want to know what’s left of the original and which details I’ve lost along the way. I like taking those questions from the page into a piece of code I can run and check.</p>
+                <p>In a first-year project, a teammate and I worked on compressing a three-dimensional array. I later made a small version of the experiment in Julia with generated data. It started with over 30,000 numbers. Both methods got that down to 616. What interested me was that they used the same amount of storage, but one reconstructed the input more accurately. That gave me a concrete way to talk about the trade-off.</p>
+                <p>I’d like to do more of that in scientific software. At EPFL, Daniel Kressner’s work gives me ideas for trying different ranks and measuring their cost. At Manchester, Nicholas Higham’s work makes me want to test what happens when the arithmetic gets less precise. Stanford’s Summer Session is another possibility. I’d like to learn more about matrix computation there and understand the algorithms behind the SVD that Gene Golub helped develop. The common thread in all three ideas is finding a question I can turn into an experiment and explain clearly to someone else.</p>
               </div>
             </details>
           </article>
         </div>
         <h3 class="other-heading">Role models and international mobility</h3>
-        <p class="career-note">Profiles based on public research. The mobility ideas are options to explore.</p>
+        <p class="career-note">Three researchers whose work I’ve read about, and three places where I could follow up on the questions it raised.</p>
         <div class="roles">
           <article class="career-panel role">
             <p class="eyebrow">Low-rank approximation</p>
             <h4>Daniel Kressner</h4>
-            <p>His work at EPFL connects matrix and tensor methods with high-performance computing. I’d like to build on my Julia demo by measuring how different target ranks affect error, storage, and runtime. <a href="https://www.epfl.ch/schools/sb/research/math/research/computationalsciences/">EPFL research profile</a></p>
-            <div class="mobility"><p class="eyebrow">Lausanne, Switzerland</p><h5>EPFL exchange semester</h5><p>Explore numerical mathematics courses and develop a reproducible comparison of tensor methods. First, check the exchange agreement and nomination process with ENSEEIHT. <a href="https://www.epfl.ch/education/international/en/coming-to-epfl/semester-courses/">EPFL exchange information</a></p></div>
+            <p>Kressner works on low-rank methods for larger computing problems. My Julia demo uses one choice of rank. His work gives me a reason to try several and see where extra accuracy stops being worth the extra memory and time. <a href="https://www.epfl.ch/schools/sb/research/math/research/computationalsciences/">EPFL research profile</a></p>
+            <div class="mobility"><p class="eyebrow">Lausanne, Switzerland</p><h5>EPFL exchange semester</h5><p>I’d look for a numerical mathematics course and turn my Julia demo into a comparison across several ranks. An exchange would depend on an agreement and nomination through ENSEEIHT. <a href="https://www.epfl.ch/education/international/en/coming-to-epfl/semester-courses/">EPFL exchange information</a></p></div>
           </article>
           <article class="career-panel role">
             <p class="eyebrow">Numerical stability</p>
             <h4>Nicholas Higham</h4>
-            <p>Higham’s work on accuracy and stability shows why an algorithm needs to be tested on difficult inputs. I’d like to study how conditioning and finite precision affect the reliability of a result. <a href="https://www.maths.manchester.ac.uk/~higham/">Manchester research profile</a></p>
-            <div class="mobility"><p class="eyebrow">Manchester, United Kingdom</p><h5>Study abroad at Manchester</h5><p>Look for numerical analysis modules and test selected methods on well-conditioned and ill-conditioned matrices. Course access depends on the route and agreement. <a href="https://www.manchester.ac.uk/study/international/study-abroad-exchange/programmes/">Manchester programme options</a></p></div>
+            <p>Higham’s work makes me want to ask the same question of a method on easy inputs and on difficult ones. Does the answer hold up when the input changes a little or the arithmetic gets less precise? <a href="https://www.maths.manchester.ac.uk/~higham/">Manchester research profile</a></p>
+            <div class="mobility"><p class="eyebrow">Manchester, United Kingdom</p><h5>Study abroad at Manchester</h5><p>I’d look for numerical analysis modules and compare how the same method behaves on well-conditioned and ill-conditioned matrices. The modules I can take would depend on the programme. <a href="https://www.manchester.ac.uk/study/international/study-abroad-exchange/programmes/">Manchester programme options</a></p></div>
           </article>
           <article class="career-panel role">
             <p class="eyebrow">Matrix computation</p>
             <h4>Gene Golub</h4>
-            <p>Golub helped develop practical SVD algorithms and build Stanford’s scientific computing community. His career shows how an algorithm can shape the tools researchers use across disciplines. <a href="https://legacy.cs.stanford.edu/memoriam/professor-gene-h-golub">Stanford biography</a></p>
-            <div class="mobility"><p class="eyebrow">Stanford, United States</p><h5>Stanford Summer Session</h5><p>Explore visiting-student courses in applied mathematics or computing, then compare SVD implementations on datasets of different sizes. Check course availability, funding, and eligibility before applying. <a href="https://events.stanford.edu/department/summer_session">Stanford programme information</a></p></div>
+            <p>I used the SVD as a tool in Julia. Golub’s work on making it practical makes me curious about the steps hidden behind that one function call. <a href="https://legacy.cs.stanford.edu/memoriam/professor-gene-h-golub">Stanford biography</a></p>
+            <div class="mobility"><p class="eyebrow">Stanford, United States</p><h5>Stanford Summer Session</h5><p>I’d look for an applied maths or computing course for visiting students and compare SVD implementations as the input grows. Course availability, funding, and eligibility would determine whether this is realistic. <a href="https://events.stanford.edu/department/summer_session">Stanford programme information</a></p></div>
           </article>
         </div>
       </div>
